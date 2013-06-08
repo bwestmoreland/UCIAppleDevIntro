@@ -1,6 +1,6 @@
 //
-//  QuizTests.h
-//  QuizTests
+//  WhereamiViewController.h
+//  WhereamiTests
 //
 //  Created by Brent Westmoreland on 6/5/13.
 //  Copyright (c) 2013 Brent Westmoreland. All rights reserved.
