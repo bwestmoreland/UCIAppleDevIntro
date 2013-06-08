@@ -1,0 +1,13 @@
+PODS:
+  - Kiwi (2.1)
+  - SVProgressHUD (0.9)
+
+DEPENDENCIES:
+  - Kiwi
+  - SVProgressHUD (~> 0.9)
+
+SPEC CHECKSUMS:
+  Kiwi: 054ef97d0e50c279b21113a0880a906fa153a7fd
+  SVProgressHUD: 03d4845ec8e64591726428a08236c6a5489d45f8
+
+COCOAPODS: 0.20.2
