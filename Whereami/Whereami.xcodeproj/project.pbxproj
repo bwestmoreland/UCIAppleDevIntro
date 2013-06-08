@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2B0262251763F4EA005649A2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B0262241763F4EA005649A2 /* CoreLocation.framework */; };
+		2B0262271763F5C7005649A2 /* AppDelegateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0262261763F5C7005649A2 /* AppDelegateSpec.m */; };
+		2B02622A1763F6E6005649A2 /* WhereamiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0262291763F6E6005649A2 /* WhereamiViewController.m */; };
+		2B02622C1763F6F4005649A2 /* WhereamiView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B02622B1763F6F4005649A2 /* WhereamiView.xib */; };
 		2BE7E25A1763F16000B5542A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE7E2591763F16000B5542A /* UIKit.framework */; };
 		2BE7E25C1763F16000B5542A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE7E25B1763F16000B5542A /* Foundation.framework */; };
 		2BE7E25E1763F16000B5542A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE7E25D1763F16000B5542A /* CoreGraphics.framework */; };
@@ -36,6 +39,10 @@
 
 /* Begin PBXFileReference section */
 		2B0262241763F4EA005649A2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		2B0262261763F5C7005649A2 /* AppDelegateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegateSpec.m; sourceTree = "<group>"; };
+		2B0262281763F6E6005649A2 /* WhereamiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhereamiViewController.h; sourceTree = "<group>"; };
+		2B0262291763F6E6005649A2 /* WhereamiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhereamiViewController.m; sourceTree = "<group>"; };
+		2B02622B1763F6F4005649A2 /* WhereamiView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhereamiView.xib; sourceTree = "<group>"; };
 		2BE7E2561763F16000B5542A /* Whereami.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Whereami.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BE7E2591763F16000B5542A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2BE7E25B1763F16000B5542A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -121,6 +128,9 @@
 			children = (
 				2BE7E2681763F16000B5542A /* AppDelegate.h */,
 				2BE7E2691763F16000B5542A /* AppDelegate.m */,
+				2B0262281763F6E6005649A2 /* WhereamiViewController.h */,
+				2B0262291763F6E6005649A2 /* WhereamiViewController.m */,
+				2B02622B1763F6F4005649A2 /* WhereamiView.xib */,
 				2BE7E2601763F16000B5542A /* Supporting Files */,
 			);
 			path = Whereami;
@@ -143,6 +153,7 @@
 		2BE7E27D1763F16000B5542A /* WhereamiTests */ = {
 			isa = PBXGroup;
 			children = (
+				2B0262261763F5C7005649A2 /* AppDelegateSpec.m */,
 				2BE7E27E1763F16000B5542A /* Supporting Files */,
 			);
 			path = WhereamiTests;
@@ -234,6 +245,7 @@
 				2BE7E26C1763F16000B5542A /* Default.png in Resources */,
 				2BE7E26E1763F16000B5542A /* Default@2x.png in Resources */,
 				2BE7E2701763F16000B5542A /* Default-568h@2x.png in Resources */,
+				2B02622C1763F6F4005649A2 /* WhereamiView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +310,7 @@
 			files = (
 				2BE7E2661763F16000B5542A /* main.m in Sources */,
 				2BE7E26A1763F16000B5542A /* AppDelegate.m in Sources */,
+				2B02622A1763F6E6005649A2 /* WhereamiViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,6 +318,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B0262271763F5C7005649A2 /* AppDelegateSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
