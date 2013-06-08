@@ -17,7 +17,6 @@
 		BF5CD57414CE63BE000D1CA6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5CD57314CE63BE000D1CA6 /* main.m */; };
 		BF5CD57814CE63BE000D1CA6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5CD57714CE63BE000D1CA6 /* AppDelegate.m */; };
 		BF5CD57B14CE63BE000D1CA6 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF5CD57914CE63BE000D1CA6 /* MainStoryboard_iPhone.storyboard */; };
-		BF5CD57E14CE63BE000D1CA6 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF5CD57C14CE63BE000D1CA6 /* MainStoryboard_iPad.storyboard */; };
 		BF5CD58114CE63BE000D1CA6 /* ConverterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5CD58014CE63BE000D1CA6 /* ConverterViewController.m */; };
 		BF5CD58914CE63BE000D1CA6 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF5CD58814CE63BE000D1CA6 /* SenTestingKit.framework */; };
 		BF5CD58A14CE63BE000D1CA6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF5CD56714CE63BE000D1CA6 /* UIKit.framework */; };
@@ -51,7 +50,6 @@
 		BF5CD57614CE63BE000D1CA6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BF5CD57714CE63BE000D1CA6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		BF5CD57A14CE63BE000D1CA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		BF5CD57D14CE63BE000D1CA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		BF5CD57F14CE63BE000D1CA6 /* ConverterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConverterViewController.h; sourceTree = "<group>"; };
 		BF5CD58014CE63BE000D1CA6 /* ConverterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConverterViewController.m; sourceTree = "<group>"; };
 		BF5CD58714CE63BE000D1CA6 /* ConverterTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConverterTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,7 +119,6 @@
 				BF5CD57614CE63BE000D1CA6 /* AppDelegate.h */,
 				BF5CD57714CE63BE000D1CA6 /* AppDelegate.m */,
 				BF5CD57914CE63BE000D1CA6 /* MainStoryboard_iPhone.storyboard */,
-				BF5CD57C14CE63BE000D1CA6 /* MainStoryboard_iPad.storyboard */,
 				BF5CD57F14CE63BE000D1CA6 /* ConverterViewController.h */,
 				BF5CD58014CE63BE000D1CA6 /* ConverterViewController.m */,
 				BF5CD56E14CE63BE000D1CA6 /* Supporting Files */,
@@ -232,7 +229,6 @@
 			files = (
 				BF5CD57214CE63BE000D1CA6 /* InfoPlist.strings in Resources */,
 				BF5CD57B14CE63BE000D1CA6 /* MainStoryboard_iPhone.storyboard in Resources */,
-				BF5CD57E14CE63BE000D1CA6 /* MainStoryboard_iPad.storyboard in Resources */,
 				2BB906FD1720B44700B2DF82 /* sun.png in Resources */,
 				2BB906FF1720B5EA00B2DF82 /* Default-568h@2x.png in Resources */,
 			);
@@ -308,14 +304,6 @@
 				BF5CD57A14CE63BE000D1CA6 /* en */,
 			);
 			name = MainStoryboard_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		BF5CD57C14CE63BE000D1CA6 /* MainStoryboard_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BF5CD57D14CE63BE000D1CA6 /* en */,
-			);
-			name = MainStoryboard_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		BF5CD59114CE63BE000D1CA6 /* InfoPlist.strings */ = {
@@ -396,6 +384,7 @@
 				GCC_PREFIX_HEADER = Converter/Prefix.pch;
 				INFOPLIST_FILE = Converter/Info.plist;
 				PRODUCT_NAME = Converter;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -407,6 +396,7 @@
 				GCC_PREFIX_HEADER = Converter/Prefix.pch;
 				INFOPLIST_FILE = Converter/Info.plist;
 				PRODUCT_NAME = Converter;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
