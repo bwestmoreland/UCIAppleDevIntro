@@ -25,5 +25,5 @@ In order to run the tests for these assignments it's likely one will need cocoap
 Homework Week 1 Added
 ---------------------
 
-Includes Quiz app from BNR
-Converter app from course materials
+* Includes Quiz app from BNR
+* Converter app from course materials
