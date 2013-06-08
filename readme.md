@@ -7,17 +7,17 @@ In order to run the tests for these assignments it's likely one will need cocoap
 
 1. Install ruby 1.9.3 on your mac (if not already installed)
 
-`$\curl -L https://get.rvm.io | bash -s stable --ruby=1.9.3`
+	`$\curl -L https://get.rvm.io | bash -s stable --ruby=1.9.3`
 
 2. Install cocoapods
 
-`gem install cocoapods`
+	`gem install cocoapods`
 
-`pod setup`
+	`pod setup`
 
 3. Navigate to the project directory witha Podfile
 
-`pod install`
+	`pod install`
 
 4. Open the *project*.xcworkspace file.
 
