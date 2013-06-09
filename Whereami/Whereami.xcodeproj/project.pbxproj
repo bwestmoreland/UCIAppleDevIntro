@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2B0262251763F4EA005649A2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B0262241763F4EA005649A2 /* CoreLocation.framework */; };
 		2B0262271763F5C7005649A2 /* AppDelegateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0262261763F5C7005649A2 /* AppDelegateSpec.m */; };
 		2B02622A1763F6E6005649A2 /* WhereamiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0262291763F6E6005649A2 /* WhereamiViewController.m */; };
 		2B02622C1763F6F4005649A2 /* WhereamiView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B02622B1763F6F4005649A2 /* WhereamiView.xib */; };
 		2B02622E1763F8D5005649A2 /* WhereamiViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B02622D1763F8D5005649A2 /* WhereamiViewSpec.m */; };
 		2B02622F1763FE29005649A2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B0262241763F4EA005649A2 /* CoreLocation.framework */; };
+		2B0262301763FFB3005649A2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B0262241763F4EA005649A2 /* CoreLocation.framework */; };
 		2BE7E25A1763F16000B5542A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE7E2591763F16000B5542A /* UIKit.framework */; };
 		2BE7E25C1763F16000B5542A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE7E25B1763F16000B5542A /* Foundation.framework */; };
 		2BE7E25E1763F16000B5542A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE7E25D1763F16000B5542A /* CoreGraphics.framework */; };
@@ -83,7 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B0262251763F4EA005649A2 /* CoreLocation.framework in Frameworks */,
+				2B0262301763FFB3005649A2 /* CoreLocation.framework in Frameworks */,
 				2BE7E2781763F16000B5542A /* SenTestingKit.framework in Frameworks */,
 				2BE7E2791763F16000B5542A /* UIKit.framework in Frameworks */,
 				2BE7E27A1763F16000B5542A /* Foundation.framework in Frameworks */,
