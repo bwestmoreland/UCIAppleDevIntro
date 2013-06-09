@@ -27,3 +27,9 @@ Homework Week 1 Added
 
 * Includes Quiz app from BNR
 * Converter app from course materials
+
+
+Homework Week 2 Added
+---------------------
+
+* Whereami app from BNR with Ch04 Bronze and Silver
