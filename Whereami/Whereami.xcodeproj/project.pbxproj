@@ -26,6 +26,8 @@
 		2BE7E2791763F16000B5542A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE7E2591763F16000B5542A /* UIKit.framework */; };
 		2BE7E27A1763F16000B5542A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE7E25B1763F16000B5542A /* Foundation.framework */; };
 		2BE7E2821763F16000B5542A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2BE7E2801763F16000B5542A /* InfoPlist.strings */; };
+		2BF23AEF1765218400A32FA5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF23AEE1765218400A32FA5 /* MapKit.framework */; };
+		2BF23AF01765219400A32FA5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF23AEE1765218400A32FA5 /* MapKit.framework */; };
 		3FC8C2CF0FC1418B8DD63AF6 /* libPods-WhereamiTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2610DF1E0A24994B02A96D7 /* libPods-WhereamiTests.a */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +65,7 @@
 		2BE7E2771763F16000B5542A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		2BE7E27F1763F16000B5542A /* WhereamiTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WhereamiTests-Info.plist"; sourceTree = "<group>"; };
 		2BE7E2811763F16000B5542A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2BF23AEE1765218400A32FA5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CF8372E39D194E4E9D1ED8BA /* Pods-WhereamiTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhereamiTests.xcconfig"; path = "Pods/Pods-WhereamiTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		F2610DF1E0A24994B02A96D7 /* libPods-WhereamiTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WhereamiTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -72,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BF23AEF1765218400A32FA5 /* MapKit.framework in Frameworks */,
 				2B02622F1763FE29005649A2 /* CoreLocation.framework in Frameworks */,
 				2BE7E25A1763F16000B5542A /* UIKit.framework in Frameworks */,
 				2BE7E25C1763F16000B5542A /* Foundation.framework in Frameworks */,
@@ -83,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BF23AF01765219400A32FA5 /* MapKit.framework in Frameworks */,
 				2B0262301763FFB3005649A2 /* CoreLocation.framework in Frameworks */,
 				2BE7E2781763F16000B5542A /* SenTestingKit.framework in Frameworks */,
 				2BE7E2791763F16000B5542A /* UIKit.framework in Frameworks */,
@@ -117,6 +122,7 @@
 		2BE7E2581763F16000B5542A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2BF23AEE1765218400A32FA5 /* MapKit.framework */,
 				2B0262241763F4EA005649A2 /* CoreLocation.framework */,
 				2BE7E2591763F16000B5542A /* UIKit.framework */,
 				2BE7E25B1763F16000B5542A /* Foundation.framework */,

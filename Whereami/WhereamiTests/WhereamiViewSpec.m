@@ -9,19 +9,36 @@
 #import "Kiwi.h"
 #import "WhereamiViewController.h"
 #import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
 
-@interface WhereamiViewController(TestAdditions)
-<CLLocationManagerDelegate>
+@interface FakeMKUserLocation : MKUserLocation
 
-@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (nonatomic) CLLocationCoordinate2D coordinate;
+
+@end
+
+@implementation FakeMKUserLocation
+
+
 
 @end
 
 WhereamiViewController *(^whereamiVC)(void) = ^WhereamiViewController *(void){
     WhereamiViewController *tempVC;
-    tempVC = [[WhereamiViewController alloc] initWithNibName: @"WhereamiViewController"
+    tempVC = [[WhereamiViewController alloc] initWithNibName: nil
                                                       bundle: nil];
-    //do any additional setup
+    MKMapView *mapView = [[MKMapView alloc] init];
+    [tempVC.view addSubview: mapView];
+    tempVC.worldView = mapView;
+    
+    UITextField *textField = [[UITextField alloc] init];
+    [tempVC.view addSubview: textField];
+    tempVC.locationTitleField = textField;
+    
+    UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] init];
+    [tempVC.view addSubview: activityIndicatorView];
+    tempVC.activityIndicatorView = activityIndicatorView;
+    
     return tempVC;
 };
 
@@ -46,10 +63,30 @@ describe(@"Where Am I View Controller", ^{
             CLLocationAccuracy accuracy = viewController.locationManager.desiredAccuracy;
             [[theValue(accuracy) should] equal:theValue(kCLLocationAccuracyBest)];
         });
-        
+
         it(@"should be a delegate for the location manager", ^{
             id <CLLocationManagerDelegate> delegate = viewController.locationManager.delegate;
             [[viewController should] equal:delegate];
+        });
+        
+        it(@"should have a worldView of type MKMapView", ^{
+            [viewController.worldView shouldNotBeNil];
+            [[viewController.worldView should] beKindOfClass: [MKMapView class]];
+            [[theValue(viewController.worldView.showsUserLocation) should] beYes];
+        });
+        
+        it(@"should have an activityIndicator", ^{
+            [viewController.activityIndicatorView shouldNotBeNil];
+            [[viewController.activityIndicatorView should] beKindOfClass: [UIActivityIndicatorView class]];
+            [[theValue(viewController.activityIndicatorView.hidesWhenStopped) should] beTrue];
+        });
+        
+        it(@"should have a locationTitleField", ^{
+            [viewController.locationTitleField shouldNotBeNil];
+            [[viewController.locationTitleField should] beKindOfClass: [UITextField class]];
+            [[viewController.locationTitleField.placeholder should] equal:@"Enter Location Name"];
+            id done = theValue(UIReturnKeyDone);
+            [[theValue(viewController.locationTitleField.returnKeyType) should] equal: done];
         });
     });
     
@@ -77,6 +114,26 @@ describe(@"Where Am I View Controller", ^{
         //TODO: learn how to actually verify with Kiwi that an unsafe_unretained object is removed in dealloc
             
         });
+    });
+    
+    context(@"as the delegate for map view", ^{
+        
+        it(@"should implement the mapView: didUpdateUserLocation: method", ^{
+            [[theBlock(^{
+                [viewController mapView: nil didUpdateUserLocation: nil];
+            }) shouldNot] raise]; //an exception
+        });
+        
+        it(@"should implement zoom the map view", ^{
+            CLLocationCoordinate2D london = { 51.509, -0.133 };
+            
+            FakeMKUserLocation *fakeUserLocation = [[FakeMKUserLocation alloc] init];
+            fakeUserLocation.coordinate = london;
+            
+            [viewController mapView: viewController.worldView didUpdateUserLocation: fakeUserLocation];
+            
+        });
+        
     });
 });
 

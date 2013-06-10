@@ -7,5 +7,11 @@
 //
 
 @interface WhereamiViewController : UIViewController
+<CLLocationManagerDelegate, MKMapViewDelegate>
+
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (weak, nonatomic) IBOutlet MKMapView *worldView;
+@property (weak, nonatomic) IBOutlet UITextField *locationTitleField;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
 @end

@@ -7,15 +7,17 @@
 //
 
 #import "WhereamiViewController.h"
+#import <MapKit/MapKit.h>
 
 @interface WhereamiViewController()
-<CLLocationManagerDelegate>
-
-@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end
 
 @implementation WhereamiViewController
+
+@synthesize activityIndicatorView = _activityIndicatorView;
+@synthesize locationTitleField = _locationTitleField;
+@synthesize worldView = _worldView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,7 +28,6 @@
         
         //Ch04 Bronze Challenge
         _locationManager.distanceFilter = 50.;
-        [_locationManager startUpdatingLocation];
         
         //Ch04 Silver Challenge P1
         if ([CLLocationManager headingAvailable]){
@@ -34,6 +35,24 @@
         }
     }
     return self;
+}
+
+#pragma mark UIViewController lifecycle
+
+- (void)viewDidLoad
+{
+    [self configureWorldView];
+}
+
+- (void)nilUnsafeUnretainedObjects
+{
+    //These objects are unsafe_unretained and should be removed manually to avoid a memory leak
+    self.locationManager.delegate = nil;
+}
+
+- (void)dealloc
+{
+    [self nilUnsafeUnretainedObjects];
 }
 
 #pragma mark CLLocationManagerDelegate
@@ -58,15 +77,72 @@
     DLog(@"Did fail with error: %@", error);
 }
 
-- (void)nilUnsafeUnretainedObjects
+#pragma mark MKMapViewDelegate
+
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-    //These objects are unsafe_unretained and should be removed manually to avoid a memory leak
-    self.locationManager.delegate = nil;
+    CLLocationCoordinate2D location = [userLocation coordinate];
+    DLog(@"Latitude: %f Longitude: %f", location.latitude, location.longitude );
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location, 250, 250);
+    [self.worldView setRegion:region animated:YES];
 }
 
-- (void)dealloc
+
+#pragma mark @property overrides and configuration
+
+- (void)setActivityIndicatorView:(UIActivityIndicatorView *)activityIndicatorView
 {
-    [self nilUnsafeUnretainedObjects];
+    [self willChangeValueForKey:@"activityIndicatorView"];
+    _activityIndicatorView = activityIndicatorView;
+    [self didChangeValueForKey:@"activityIndicatorView"];
+    [self configureActivityIndicatorView];
+}
+
+- (UIActivityIndicatorView *)activityIndicatorView
+{
+    return _activityIndicatorView;
+}
+
+- (void)configureActivityIndicatorView
+{
+    self.activityIndicatorView.hidesWhenStopped = YES;
+}
+
+- (void)setLocationTitleField:(UITextField *)locationTitleField
+{
+    [self willChangeValueForKey:@"locationTitleField"];
+    _locationTitleField = locationTitleField;
+    [self didChangeValueForKey:@"locationTitleField"];
+    [self configureLocationTitleTextField];
+}
+
+- (UITextField *)locationTitleField
+{
+    return _locationTitleField;
+}
+
+- (void)configureLocationTitleTextField
+{
+    self.locationTitleField.placeholder = @"Enter Location Name";
+    self.locationTitleField.returnKeyType = UIReturnKeyDone;
+}
+
+- (void)setWorldView:(MKMapView *)worldView
+{
+    [self willChangeValueForKey:@"worldView"];
+    _worldView = worldView;
+    [self didChangeValueForKey:@"worldView"];
+    [self configureWorldView];
+}
+
+- (MKMapView *)worldView
+{
+    return _worldView;
+}
+
+- (void)configureWorldView
+{
+    self.worldView.showsUserLocation = YES;
 }
 
 @end
