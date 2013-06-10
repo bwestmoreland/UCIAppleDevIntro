@@ -84,11 +84,13 @@
     CLLocationCoordinate2D location = [userLocation coordinate];
     DLog(@"Latitude: %f Longitude: %f", location.latitude, location.longitude );
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location, 250, 250);
-    [self.worldView setRegion:region animated:YES];
+    [mapView setRegion:region animated:YES];
 }
 
 
 #pragma mark @property overrides and configuration
+
+//activityIndicatorView
 
 - (void)setActivityIndicatorView:(UIActivityIndicatorView *)activityIndicatorView
 {
@@ -108,6 +110,8 @@
     self.activityIndicatorView.hidesWhenStopped = YES;
 }
 
+//locationTitleField
+
 - (void)setLocationTitleField:(UITextField *)locationTitleField
 {
     [self willChangeValueForKey:@"locationTitleField"];
@@ -126,6 +130,9 @@
     self.locationTitleField.placeholder = @"Enter Location Name";
     self.locationTitleField.returnKeyType = UIReturnKeyDone;
 }
+
+
+//worldView
 
 - (void)setWorldView:(MKMapView *)worldView
 {

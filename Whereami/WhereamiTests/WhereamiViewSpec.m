@@ -11,7 +11,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 
-@interface FakeMKUserLocation : MKUserLocation
+@interface FakeMKUserLocation : NSObject
 
 @property (nonatomic) CLLocationCoordinate2D coordinate;
 
@@ -19,7 +19,7 @@
 
 @implementation FakeMKUserLocation
 
-
+@synthesize coordinate = _coordinate;
 
 @end
 
@@ -27,7 +27,8 @@ WhereamiViewController *(^whereamiVC)(void) = ^WhereamiViewController *(void){
     WhereamiViewController *tempVC;
     tempVC = [[WhereamiViewController alloc] initWithNibName: nil
                                                       bundle: nil];
-    MKMapView *mapView = [[MKMapView alloc] init];
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    MKMapView *mapView = [[MKMapView alloc] initWithFrame:bounds];
     [tempVC.view addSubview: mapView];
     tempVC.worldView = mapView;
     
@@ -124,14 +125,19 @@ describe(@"Where Am I View Controller", ^{
             }) shouldNot] raise]; //an exception
         });
         
-        it(@"should implement zoom the map view", ^{
+        it(@"should zoom the map view", ^{
             CLLocationCoordinate2D london = { 51.509, -0.133 };
             
             FakeMKUserLocation *fakeUserLocation = [[FakeMKUserLocation alloc] init];
             fakeUserLocation.coordinate = london;
             
-            [viewController mapView: viewController.worldView didUpdateUserLocation: fakeUserLocation];
+            [viewController mapView: viewController.worldView
+              didUpdateUserLocation: (MKUserLocation *)fakeUserLocation];
             
+            [[theValue(viewController.worldView.region.center.latitude) should] equal: london.latitude
+                                                                            withDelta: 0.0001];
+            [[theValue(viewController.worldView.region.center.longitude) should] equal: london.longitude
+                                                                            withDelta: 0.0001];
         });
         
     });
