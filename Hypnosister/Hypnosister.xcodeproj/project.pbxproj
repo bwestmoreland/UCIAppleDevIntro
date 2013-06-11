@@ -21,6 +21,7 @@
 		2BE3E08F1767BE9C00C3752D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE3E0701767BE9C00C3752D /* Foundation.framework */; };
 		2BE3E0971767BE9C00C3752D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2BE3E0951767BE9C00C3752D /* InfoPlist.strings */; };
 		2BE3E0A41767C14800C3752D /* AppDelegateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE3E0A31767C14800C3752D /* AppDelegateSpec.m */; };
+		2BE3E0A71767C2D100C3752D /* HypnosisView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE3E0A61767C2D100C3752D /* HypnosisView.m */; };
 		91F1644C850240B08B074E94 /* libPods-HypnosisterTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F22066914041C0BA736590 /* libPods-HypnosisterTests.a */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,8 @@
 		2BE3E0941767BE9C00C3752D /* HypnosisterTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HypnosisterTests-Info.plist"; sourceTree = "<group>"; };
 		2BE3E0961767BE9C00C3752D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2BE3E0A31767C14800C3752D /* AppDelegateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegateSpec.m; sourceTree = "<group>"; };
+		2BE3E0A51767C2D100C3752D /* HypnosisView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HypnosisView.h; sourceTree = "<group>"; };
+		2BE3E0A61767C2D100C3752D /* HypnosisView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HypnosisView.m; sourceTree = "<group>"; };
 		A7F22066914041C0BA736590 /* libPods-HypnosisterTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HypnosisterTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D605121AD5CE499C881F8ACB /* Pods-HypnosisterTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HypnosisterTests.xcconfig"; path = "Pods/Pods-HypnosisterTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -119,6 +122,8 @@
 			children = (
 				2BE3E07D1767BE9C00C3752D /* AppDelegate.h */,
 				2BE3E07E1767BE9C00C3752D /* AppDelegate.m */,
+				2BE3E0A51767C2D100C3752D /* HypnosisView.h */,
+				2BE3E0A61767C2D100C3752D /* HypnosisView.m */,
 				2BE3E0751767BE9C00C3752D /* Supporting Files */,
 			);
 			path = Hypnosister;
@@ -297,6 +302,7 @@
 			files = (
 				2BE3E07B1767BE9C00C3752D /* main.m in Sources */,
 				2BE3E07F1767BE9C00C3752D /* AppDelegate.m in Sources */,
+				2BE3E0A71767C2D100C3752D /* HypnosisView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
