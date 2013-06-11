@@ -33,3 +33,4 @@ Homework Week 2 Added
 ---------------------
 
 * Whereami app from BNR with Ch04 Bronze and Silver
+* Added whereami Ch05 Bronze and Silver
