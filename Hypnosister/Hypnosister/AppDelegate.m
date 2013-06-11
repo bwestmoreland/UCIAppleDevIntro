@@ -15,31 +15,31 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    [[UIApplication sharedApplication] setStatusBarHidden: YES
+                                            withAnimation: UIStatusBarAnimationFade];
+     
+    
     CGRect screenRect = [[self window] bounds];
     
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame: screenRect];
+    [scrollView setMinimumZoomScale: 1.0];
+    [scrollView setMaximumZoomScale: 5.0];
+    scrollView.delegate = self;
     [self.window addSubview: scrollView];
     
     CGRect bigRect = screenRect;
     
-    bigRect.size.width *= 2.0;
-    
-    HypnosisView *view = [[HypnosisView alloc] initWithFrame: screenRect];
-    [scrollView addSubview:view];
-    
-    screenRect.origin.x = screenRect.size.width;
-    
-    HypnosisView *anotherView = [[HypnosisView alloc] initWithFrame: screenRect];
-    [scrollView addSubview: anotherView];
+    self.view = [[HypnosisView alloc] initWithFrame: screenRect];
+    [scrollView addSubview:self.view];
     
     
     scrollView.contentSize = bigRect.size;
 
     
     
-    BOOL success = [view becomeFirstResponder];
+    BOOL success = [self.view becomeFirstResponder];
     
-    NSString *class = NSStringFromClass([view class]);
+    NSString *class = NSStringFromClass([self.view class]);
     
     if (success) {
         DLog(@"%@ became first responder", class );
@@ -49,9 +49,14 @@
     }
     
     self.window.backgroundColor = [UIColor whiteColor];
-    scrollView.pagingEnabled = YES;
+    
+
     [self.window makeKeyAndVisible];
     return YES;
+}
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return self.view;
 }
 
 @end
