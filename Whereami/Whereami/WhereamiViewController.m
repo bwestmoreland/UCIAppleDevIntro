@@ -51,12 +51,28 @@ typedef enum {
     self.locationTitleField.hidden = YES;
 }
 
+//Ch05 Gold Challenge
+
+- (NSString *)dateToday
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    dateFormatter.dateStyle = NSDateFormatterMediumStyle;
+    dateFormatter.timeStyle = NSDateFormatterNoStyle;
+    
+    NSDate *date = [NSDate date];
+    
+    return [dateFormatter stringFromDate: date];
+}
+
 - (void)foundLocation:(CLLocation *)loc
 {
     CLLocationCoordinate2D coord = [loc coordinate];
     
+    NSString *annotationTitle = [self.locationTitleField.text stringByAppendingFormat: @" - %@", [self dateToday]];
+    
     MapPoint *point = [[MapPoint alloc] initWithCoordinate: coord
-                                                     title: self.locationTitleField.text];
+                                                     title: annotationTitle];
     
     [self.worldView addAnnotation: point];
     
@@ -76,14 +92,16 @@ typedef enum {
 }
 
 
-//Ch05 Silver
+//Ch05 Silver Challenge
+
 -(void)mapTypeChanged:(UISegmentedControl *)sender
 {
     NSParameterAssert(sender.selectedSegmentIndex >= 0);
     NSParameterAssert(sender.selectedSegmentIndex < 3);
 
     if (sender.selectedSegmentIndex == kMapTypeStandard ){
-//Ch05 Bronze
+
+//Ch05 Bronze Challenge
         self.worldView.mapType = MKMapTypeStandard;
     }
     else if (sender.selectedSegmentIndex == kMapTypeSatellite){
@@ -142,6 +160,7 @@ typedef enum {
 }
 
 #else //it's < iOS6 and should use the deprecated API
+
 //TODO: Remove this after removal of iOS5 support
 
 - (void)locationManager:(CLLocationManager *)manager
