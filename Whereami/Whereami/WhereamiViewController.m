@@ -7,7 +7,13 @@
 //
 
 #import "WhereamiViewController.h"
-#import <MapKit/MapKit.h>
+#import "MapPoint.h"
+
+typedef enum {
+    kMapTypeStandard = 0,
+    kMapTypeSatellite,
+    kMapTypeHybrid
+} kMapType;
 
 @interface WhereamiViewController()
 
@@ -37,6 +43,57 @@
     return self;
 }
 
+- (void)findLocation
+{
+    [self.locationManager startUpdatingLocation];
+    [self.activityIndicatorView startAnimating];
+    
+    self.locationTitleField.hidden = YES;
+}
+
+- (void)foundLocation:(CLLocation *)loc
+{
+    CLLocationCoordinate2D coord = [loc coordinate];
+    
+    MapPoint *point = [[MapPoint alloc] initWithCoordinate: coord
+                                                     title: self.locationTitleField.text];
+    
+    [self.worldView addAnnotation: point];
+    
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 250, 250);
+    
+    [self.worldView setRegion: region animated: YES];
+    
+    [self resetUI];
+}
+
+- (void)resetUI
+{
+    self.locationTitleField.text = @"";
+    [self.activityIndicatorView stopAnimating];
+    self.locationTitleField.hidden = NO;
+    [self.locationManager stopUpdatingLocation];
+}
+
+
+//Ch05 Silver
+-(void)mapTypeChanged:(UISegmentedControl *)sender
+{
+    NSParameterAssert(sender.selectedSegmentIndex >= 0);
+    NSParameterAssert(sender.selectedSegmentIndex < 3);
+
+    if (sender.selectedSegmentIndex == kMapTypeStandard ){
+//Ch05 Bronze
+        self.worldView.mapType = MKMapTypeStandard;
+    }
+    else if (sender.selectedSegmentIndex == kMapTypeSatellite){
+        self.worldView.mapType = MKMapTypeSatellite;
+    }
+    else {
+        self.worldView.mapType = MKMapTypeHybrid;
+    }
+}
+
 #pragma mark UIViewController lifecycle
 
 - (void)viewDidLoad
@@ -57,7 +114,6 @@
 
 #pragma mark CLLocationManagerDelegate
 
-
 //Ch04 Silver Challenge P2
 - (void)locationManager:(CLLocationManager *)manager
        didUpdateHeading:(CLHeading *)newHeading
@@ -65,11 +121,36 @@
     DLog(@"New Heading: %@", newHeading);
 }
 
+- (void)didUpdateLocation:(CLLocation *)location
+{
+    NSTimeInterval t = [[location timestamp] timeIntervalSinceNow];
+    
+    if (t < -180){
+        //Cached data
+        return;
+    }
+    [self foundLocation: location];
+}
+
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 60000 //then it's > iOS6
+
 - (void)locationManager:(CLLocationManager *)manager
      didUpdateLocations:(NSArray *)locations
-{
-    DLog(@"Locations: %@", locations);
+{    
+    [self didUpdateLocation:locations[0]];
 }
+
+#else //it's < iOS6 and should use this API
+//TODO: Remove this after removal of iOS5 support
+
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation
+{
+    [self didUpdateLocation: newLocation];
+}
+
+#endif
 
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error
@@ -87,6 +168,15 @@
     [mapView setRegion:region animated:YES];
 }
 
+#pragma mark UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self findLocation];
+    
+    [textField resignFirstResponder];
+    return YES;
+}
 
 #pragma mark @property overrides and configuration
 

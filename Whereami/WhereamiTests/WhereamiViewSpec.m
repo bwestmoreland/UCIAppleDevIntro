@@ -141,6 +141,27 @@ describe(@"Where Am I View Controller", ^{
         });
         
     });
+    
+    context(@"as a UITextField delegate", ^{
+        it(@"should conform to protocol UITextFieldDelgate", ^{
+            [[viewController should] conformToProtocol: @protocol(UITextFieldDelegate)];
+        });
+        
+        it(@"should implement textFieldShouldReturn: ", ^{
+            [[theBlock(^{
+                [viewController textFieldShouldReturn: nil];
+            }) shouldNot] raise]; //an exception
+        });
+    });
+    
+    context(@"after entering a location", ^{
+        beforeEach(^{ // Occurs before each enclosed "it"
+            viewController.locationTitleField.text = @"Some Text";
+        });
+        it(@"should be able to find a location", ^{
+            
+        });
+    });
 });
 
 

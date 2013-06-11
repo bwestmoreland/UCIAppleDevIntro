@@ -7,11 +7,16 @@
 //
 
 @interface WhereamiViewController : UIViewController
-<CLLocationManagerDelegate, MKMapViewDelegate>
+<CLLocationManagerDelegate, MKMapViewDelegate, UITextFieldDelegate>
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (weak, nonatomic) IBOutlet MKMapView *worldView;
 @property (weak, nonatomic) IBOutlet UITextField *locationTitleField;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
+
+- (IBAction)mapTypeChanged:(UISegmentedControl *)sender;
+
+- (void)findLocation;
+- (void)foundLocation: (CLLocation *)loc;
 
 @end
