@@ -14,8 +14,15 @@
 {
     if (self = [super initWithFrame:frame]){
         self.backgroundColor = [UIColor clearColor];
+        self.circleColor = [UIColor lightGrayColor];
     }
     return self;
+}
+
+- (void)setCircleColor:(UIColor *)circleColor
+{
+    _circleColor = circleColor;
+    [self setNeedsDisplay];
 }
 
 
@@ -34,7 +41,7 @@
     
     CGContextSetLineWidth(context, 10);
     
-    [[UIColor lightGrayColor] setStroke];
+    [self.circleColor setStroke];
     
     for (float currentRadius = maxRadius; currentRadius > 0; currentRadius -= 20 ) {
         CGContextAddArc(context, center.x, center.y, currentRadius, 0., M_PI * 2.,  YES);
@@ -64,4 +71,18 @@
     [text drawInRect: textRect
             withFont: font];
 }
+
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
+
+- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    if (motion == UIEventSubtypeMotionShake){
+        DLog(@"Device started shaking");
+        self.circleColor = [UIColor redColor];
+    }
+}
+
 @end
