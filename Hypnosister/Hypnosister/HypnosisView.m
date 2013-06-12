@@ -81,11 +81,41 @@
     
     CGColorRef color = [[UIColor darkGrayColor] CGColor];
     
+    CGContextSaveGState(context);
+    
     CGContextSetShadowWithColor(context, offset, 2.0, color);
     
-    [text drawInRect: textRect
-            withFont: font];
+    [text drawInRect:textRect
+            withFont:font];
     
+    CGContextRestoreGState(context);
+    
+    [self drawCrossHairAtPoint: center onRect: textRect inContext: context];
+
+    CGContextStrokePath(context);
+    
+}
+
+//Ch06 Silver Challenge Shapes
+
+- (void)drawCrossHairAtPoint: (CGPoint)center onRect: (CGRect) rect inContext: (CGContextRef)context
+{
+    UIGraphicsPushContext(context);
+    
+    CGContextSetLineWidth(context, 2.);
+    
+    CGFloat size = rect.size.width / 4.;
+    
+    CGContextMoveToPoint(context, center.x, center.y - size);
+    CGContextAddLineToPoint(context, center.x, center.y + size);
+    
+    
+    CGContextMoveToPoint(context, center.x - size, center.y);
+    CGContextAddLineToPoint(context, center.x + size, center.y);
+    
+    [[UIColor greenColor] setStroke];
+    
+    UIGraphicsPopContext();
 }
 
 - (BOOL)canBecomeFirstResponder
