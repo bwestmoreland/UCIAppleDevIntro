@@ -96,7 +96,7 @@
     
 }
 
-//Ch06 Silver Challenge Shapes
+//Ch06 Silver Challenge - Shapes
 
 - (void)drawCrossHairAtPoint: (CGPoint)center onRect: (CGRect) rect inContext: (CGContextRef)context
 {
