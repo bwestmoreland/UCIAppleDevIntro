@@ -9,7 +9,7 @@
 #import "HypnosisView.h"
 @interface HypnosisView()
 
-@property (nonatomic) BOOL hasShaken;
+@property (nonatomic) BOOL hasLoaded;
 
 @end
 
@@ -21,7 +21,6 @@
     if (self = [super initWithFrame:frame]){
         self.backgroundColor = [UIColor clearColor];
         self.circleColor = [UIColor lightGrayColor];
-        self.hasShaken = NO;
     }
     return self;
 }
@@ -53,7 +52,7 @@
     for (float currentRadius = maxRadius; currentRadius > 0; currentRadius -= 20 ) {
         CGContextAddArc(ctx, center.x, center.y, currentRadius, 0., M_PI * 2.,  YES);
         
-        if (!self.hasShaken) {
+        if (!self.hasLoaded) {
             //Ch06 Bronze Challenge
             [[UIColor colorWithRed: arc4random() % 255/ 255.0
                              green: arc4random() % 255/ 255.0
@@ -93,6 +92,8 @@
     [self drawCrossHairAtPoint: center onRect: textRect inContext: ctx];
 
     CGContextStrokePath(ctx);
+    
+    self.hasLoaded = YES;
     
 }
 
@@ -136,8 +137,8 @@
 {
     if (motion == UIEventSubtypeMotionShake){
         DLog(@"Device started shaking");
-        self.hasShaken = YES;
-        self.circleColor = [UIColor redColor];
+        self.hasLoaded = NO;
+        [self setNeedsDisplay];
     }
 }
 

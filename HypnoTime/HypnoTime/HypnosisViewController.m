@@ -9,15 +9,42 @@
 #import "HypnosisViewController.h"
 #import "HypnosisView.h"
 
+typedef enum {
+    kCircleColorRed = 0,
+    kCircleColorGreen,
+    kCircleColorBlue
+} kCircleColor;
+
 @implementation HypnosisViewController
 
-- (void)loadView
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    CGRect frame = [[UIScreen mainScreen] bounds];
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]){
     
-    HypnosisView *view = [[HypnosisView alloc] initWithFrame: frame];
-    
-    self.view = view;
+        [self setTitle: @"Hypnosis"];
+        
+        [[self tabBarItem] setImage: [UIImage imageNamed: @"Hypno"]];
+    }
+    return self;
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    DLog(@"%@ Loaded", NSStringFromClass([self class]));
+}
+
+- (IBAction)colorChosen:(UISegmentedControl *)sender
+{
+    if (sender.selectedSegmentIndex == kCircleColorRed) {
+        [(HypnosisView *)self.view setCircleColor:[UIColor redColor]];
+    }
+    else if (sender.selectedSegmentIndex == kCircleColorGreen) {
+        [(HypnosisView *)self.view setCircleColor:[UIColor greenColor]];
+    }
+    else {
+        [(HypnosisView *)self.view setCircleColor:[UIColor blueColor]];
+    }
+}
 @end
