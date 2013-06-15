@@ -35,7 +35,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
     
     CGRect bounds = [self bounds];
     
@@ -46,12 +46,12 @@
     
     float maxRadius = hypot(bounds.size.width, bounds.size.height) / 2.0;
     
-    CGContextSetLineWidth(context, 10);
+    CGContextSetLineWidth(ctx, 10);
     
     [self.circleColor setStroke];
     
     for (float currentRadius = maxRadius; currentRadius > 0; currentRadius -= 20 ) {
-        CGContextAddArc(context, center.x, center.y, currentRadius, 0., M_PI * 2.,  YES);
+        CGContextAddArc(ctx, center.x, center.y, currentRadius, 0., M_PI * 2.,  YES);
         
         if (!self.hasShaken) {
             //Ch06 Bronze Challenge
@@ -61,7 +61,7 @@
                              alpha: 1.] setStroke];
         }
         
-        CGContextStrokePath(context);
+        CGContextStrokePath(ctx);
     }
     
     NSString *text = @"You are getting sleepy";
@@ -81,37 +81,46 @@
     
     CGColorRef color = [[UIColor darkGrayColor] CGColor];
     
-    CGContextSaveGState(context);
+    CGContextSaveGState(ctx);
     
-    CGContextSetShadowWithColor(context, offset, 2.0, color);
+    CGContextSetShadowWithColor(ctx, offset, 2.0, color);
     
     [text drawInRect:textRect
             withFont:font];
     
-    CGContextRestoreGState(context);
+    CGContextRestoreGState(ctx);
     
-    [self drawCrossHairAtPoint: center onRect: textRect inContext: context];
+    [self drawCrossHairAtPoint: center onRect: textRect inContext: ctx];
 
-    CGContextStrokePath(context);
+    CGContextStrokePath(ctx);
     
 }
 
 //Ch06 Silver Challenge - Shapes
 
-- (void)drawCrossHairAtPoint: (CGPoint)center onRect: (CGRect) rect inContext: (CGContextRef)context
+- (void)drawCrossHairAtPoint: (CGPoint)center onRect: (CGRect) rect inContext: (CGContextRef)ctx
 {
-    UIGraphicsPushContext(context);
+    UIGraphicsPushContext(ctx);
     
-    CGContextSetLineWidth(context, 2.);
+    CGContextSetLineWidth(ctx, 3.);
     
     CGFloat size = rect.size.width / 4.;
     
-    CGContextMoveToPoint(context, center.x, center.y - size);
-    CGContextAddLineToPoint(context, center.x, center.y + size);
+    CGContextMoveToPoint(ctx, center.x, center.y - size);
+    CGContextAddLineToPoint(ctx, center.x, center.y + size);
     
     
-    CGContextMoveToPoint(context, center.x - size, center.y);
-    CGContextAddLineToPoint(context, center.x + size, center.y);
+    CGContextMoveToPoint(ctx, center.x - size, center.y);
+    CGContextAddLineToPoint(ctx, center.x + size, center.y);
+    
+    CGContextAddArc(ctx,
+                    center.x,
+                    center.y,
+                    size / 2.,
+                    0.,
+                    M_PI * 2. ,
+                    YES);
+    
     
     [[UIColor greenColor] setStroke];
     

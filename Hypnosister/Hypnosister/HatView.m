@@ -18,8 +18,10 @@
     return self;
 }
 
-- (void)drawGradient:(CGRect)rect inContext:(CGContextRef)ctx
+- (void)drawGradientInRect:(CGRect)rect usingContext:(CGContextRef)ctx
 {
+    UIGraphicsPushContext( ctx );
+    
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGFloat locations[] = { 0.0, 1.0 };
     
@@ -37,10 +39,14 @@
     CGPoint endPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
     
     CGContextDrawLinearGradient(ctx, gradient, startPoint, endPoint, 0);
+    
+    UIGraphicsPopContext();
 }
 
-- (void)maskCircleOverRect:(CGRect)rect inContext:(CGContextRef)ctx
+- (void)maskCircleOverRect:(CGRect)rect usingContext:(CGContextRef)ctx
 {
+    UIGraphicsPushContext(ctx);
+    
     CGPoint center;
     center.x = rect.origin.x + rect.size.width / 2.;
     center.y = rect.origin.y + rect.size.height / 2.;
@@ -56,15 +62,21 @@
                     YES);
     
     CGContextClip(ctx);
+    
+    UIGraphicsPopContext();
 }
 
 - (void)drawCircleBorderInRect:(CGRect)rect usingContext:(CGContextRef)ctx
 {
+    UIGraphicsPushContext(ctx);
+    
     CGContextSetLineWidth(ctx, 3.);
     
     CGContextAddEllipseInRect(ctx, rect);
     
     CGContextStrokePath(ctx);
+    
+    UIGraphicsPopContext();
 }
 
 - (void)drawRect:(CGRect)rect
@@ -74,15 +86,15 @@
     [[UIColor blackColor] setFill];
     [[UIColor blackColor] setStroke];
     
-    [self maskCircleOverRect:rect inContext:ctx];
+    [self maskCircleOverRect:rect usingContext:ctx];
     
     UIImage *hat = [UIImage imageNamed: @"Icon"];
     
     [hat drawInRect: rect];
     
-    [self drawGradient:rect inContext:ctx];
+    [self drawGradientInRect: rect usingContext: ctx];
     
-    [self drawCircleBorderInRect:rect usingContext:ctx];
+    [self drawCircleBorderInRect: rect usingContext: ctx];
 }
 
 @end
