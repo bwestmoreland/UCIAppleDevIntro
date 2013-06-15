@@ -42,7 +42,7 @@ describe(@"AppDelegate", ^{
             [[theValue(window.keyWindow) should] beYes];
         });
         
-        it(@"should have a root view controller that is our quizViewController", ^{
+        it(@"should have a root view controller that is our ViewController", ^{
             [[appDelegate.window.rootViewController should] beIdenticalTo:viewController];
         });
         

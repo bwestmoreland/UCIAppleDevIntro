@@ -155,8 +155,8 @@ typedef enum {
 - (void)locationManager:(CLLocationManager *)manager
      didUpdateLocations:(NSArray *)locations
 {
-    DLog(@"iOS6: %@", locations);
-    [self didUpdateLocation:locations[0]];
+//    DLog(@"iOS6: %@", locations);
+//    [self didUpdateLocation:locations[0]];
 }
 
 #else //it's < iOS6 and should use the deprecated API
