@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@class HypnosisView, HatView;
 
 @interface AppDelegate : UIResponder
 <UIApplicationDelegate, UIScrollViewDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) UIView *view;
+@property (strong, nonatomic) HypnosisView *view;
+@property (strong, nonatomic) HatView *hatView;
 
 @end

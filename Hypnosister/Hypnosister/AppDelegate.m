@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "HypnosisView.h"
+#import "HatView.h"
 
 @implementation AppDelegate
 
@@ -32,6 +33,8 @@
     self.view = [[HypnosisView alloc] initWithFrame: screenRect];
     [scrollView addSubview:self.view];
     
+    self.hatView = [[HatView alloc] initWithFrame: CGRectMake(0, 0, 57., 57.)];
+    [self.view addSubview: self.hatView];
     
     scrollView.contentSize = bigRect.size;
 
