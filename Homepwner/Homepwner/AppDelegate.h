@@ -6,10 +6,11 @@
 //  Copyright (c) 2013 Brent Westmoreland. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ItemsViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) ItemsViewController *itemsViewController;
 
 @end
