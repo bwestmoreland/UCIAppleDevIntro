@@ -10,6 +10,12 @@
 #import "ItemStore.h"
 #import "Item.h"
 
+@interface ItemsViewController()
+
+@property (nonatomic) BOOL isBronzeChallenge;
+
+@end
+
 @implementation ItemsViewController
 
 - (id)init
@@ -17,6 +23,7 @@
     if (self = [super initWithStyle: UITableViewStyleGrouped]) {
         for (int i = 0; i <= 5; i++) {
             [[ItemStore sharedStore] createItem];
+            [self setIsBronzeChallenge: NO];
         }
     }
     return self;
@@ -27,14 +34,40 @@
     return [self init];
 }
 
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    NSInteger sections = 1;
+    if (self.isBronzeChallenge) sections = 2;
+    return sections;
+}
+
+- (NSPredicate *)filterForSection: (NSInteger)section
+{
+    NSPredicate *filter;
+    if (section) {
+        filter = [NSPredicate predicateWithFormat:@"valueInDollars > 50"];
+    }
+    else {
+        filter = [NSPredicate predicateWithFormat:@"valueInDollars < 50"];
+    }
+    return filter;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[[ItemStore sharedStore] allItems] count];
+    NSInteger count;
+    if (self.isBronzeChallenge){
+        //Ch09 Bronze Challenge
+        NSPredicate *filter = [self filterForSection: section];
+        NSArray *filteredArray = [[[ItemStore sharedStore] allItems] filteredArrayUsingPredicate: filter];
+        count = [filteredArray count];
+    }
+    else {
+        //Ch09 Silver Challenge
+        count = [[[ItemStore sharedStore] allItems] count] + 1;
+    }
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -47,11 +80,28 @@
         cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: identifier];
     }
     
-    Item *item = [[[ItemStore sharedStore] allItems] objectAtIndex: indexPath.row];
+    //Ch09 Silver Challenge
+    if (indexPath.row >= [[[ItemStore sharedStore] allItems] count]){
+        cell.textLabel.text = @"No more items!";
+        return cell;
+    }
+    
+    Item *item;
+    
+    if (self.isBronzeChallenge) {
+        NSPredicate *filter = [self filterForSection: indexPath.section];
+        NSArray *filteredArray = [[[ItemStore sharedStore] allItems] filteredArrayUsingPredicate: filter];
+        item = filteredArray[indexPath.row];
+    }
+    else {
+        item = [[[ItemStore sharedStore] allItems] objectAtIndex: indexPath.row];
+    }
     
     cell.textLabel.text = [item description];
     
     return cell;
 }
+
+
 
 @end
