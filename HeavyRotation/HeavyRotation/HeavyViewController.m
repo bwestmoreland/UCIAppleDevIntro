@@ -12,13 +12,23 @@
 
 - (void)viewDidLoad
 {
+    //Ch08 Bronze
+    
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     
     [nc addObserver: self
            selector: @selector(proximityStateChanged:)
                name: UIDeviceProximityStateDidChangeNotification
              object: [UIDevice currentDevice]];
+    
+    // Ch08 Silver
+    [self.leftButton setAutoresizingMask:UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin];
+    [self.rightButton setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin];
+    [self.imageView setAutoresizingMask:UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth];
+    [self.slider setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin];
 }
+
+//Ch08 Bronze
 
 - (void)proximityStateChanged: (NSNotification *)notification
 {
@@ -32,6 +42,38 @@
     }
 }
 
+//Ch08 Gold Challenge
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+                                         duration:(NSTimeInterval)duration
+{
+    CGRect viewBounds = [self.view bounds];
+    
+    NSLog(@"View Bounds: %@", NSStringFromCGRect(viewBounds));
+    
+    CGFloat magicInset = 10.;
+    
+    CGRect portraitFrame;
+    portraitFrame.size.height = 44.0;
+    portraitFrame.size.width = 74.0;
+    portraitFrame.origin.y = CGRectGetMidY(viewBounds) - portraitFrame.size.height * .5;
+    portraitFrame.origin.x = magicInset;
+    
+    CGRect landscapeFrame;
+    landscapeFrame.size = portraitFrame.size;
+    landscapeFrame.origin.y = CGRectGetMidY(viewBounds) - landscapeFrame.size.height * .5;
+    landscapeFrame.origin.x = CGRectGetMaxX(viewBounds) - landscapeFrame.size.width - magicInset;
+    
+    if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
+        self.willAnimateButton.frame = portraitFrame;
+        NSLog(@"Portrait: %@", NSStringFromCGRect(portraitFrame));
+    }
+    else {
+        self.willAnimateButton.frame = landscapeFrame;
+        NSLog(@"Landscape: %@", NSStringFromCGRect(landscapeFrame));
+    }
+    
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation
 {
     return (toInterfaceOrientation == UIInterfaceOrientationPortrait
@@ -43,4 +85,13 @@
     [[NSNotificationCenter defaultCenter] removeObserver: self];
 }
 
+- (void)viewDidUnload
+{
+    [self setImageView:nil];
+    [self setSlider:nil];
+    [self setRightButton:nil];
+    [self setLeftButton:nil];
+    [self setWillAnimateButton:nil];
+    [super viewDidUnload];
+}
 @end
