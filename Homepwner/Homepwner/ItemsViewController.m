@@ -12,7 +12,7 @@
 
 @interface ItemsViewController()
 
-@property (nonatomic) BOOL isBronzeChallenge;
+@property (nonatomic) BOOL isChapterNineBronzeChallenge;
 
 @end
 
@@ -23,7 +23,7 @@
     if (self = [super initWithStyle: UITableViewStyleGrouped]) {
         for (int i = 0; i <= 5; i++) {
             [[ItemStore sharedStore] createItem];
-            [self setIsBronzeChallenge: NO];
+            [self setIsChapterNineBronzeChallenge: NO];
         }
     }
     return self;
@@ -38,7 +38,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     NSInteger sections = 1;
-    if (self.isBronzeChallenge) sections = 2;
+    if (self.isChapterNineBronzeChallenge) sections = 2;
     return sections;
 }
 
@@ -57,7 +57,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger count;
-    if (self.isBronzeChallenge){
+    if (self.isChapterNineBronzeChallenge){
         //Ch09 Bronze Challenge
         NSPredicate *filter = [self filterForSection: section];
         NSArray *filteredArray = [[[ItemStore sharedStore] allItems] filteredArrayUsingPredicate: filter];
@@ -88,7 +88,7 @@
     
     Item *item;
     
-    if (self.isBronzeChallenge) {
+    if (self.isChapterNineBronzeChallenge) {
         NSPredicate *filter = [self filterForSection: indexPath.section];
         NSArray *filteredArray = [[[ItemStore sharedStore] allItems] filteredArrayUsingPredicate: filter];
         item = filteredArray[indexPath.row];
