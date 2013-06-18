@@ -35,3 +35,14 @@ Homework Week 2 Added
 * Whereami app from BNR with Ch04 Bronze and Silver Challenges
 * Added Whereami Ch05 Bronze, Silver, and Gold Challenges
 * Add Hypnosister Ch06 Bronze and Silver Challenges
+
+
+Homework Week 3 Added
+---------------------
+
+* Chapters 7, 8, 9, 10 Bronze, Silver, and Gold challenges
+
+Homework Week 4 Added
+---------------------
+
+* Chapters 11, 12, 13 Bronze, Silver, and Gold challenges
