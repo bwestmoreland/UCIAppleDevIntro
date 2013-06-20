@@ -46,3 +46,8 @@ Homework Week 4 Added
 ---------------------
 
 * Chapters 11, 12, 13 Bronze, Silver, and Gold challenges
+
+Homework Week 5 Added
+---------------------
+* Chapter 14 Bronze challenge done.
+* Chapter 14 Silver challenge done.
