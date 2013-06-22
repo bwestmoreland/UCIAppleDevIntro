@@ -149,6 +149,9 @@ titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
     
     cell.nameLabel.text = item.itemName;
     cell.serialNumberLabel.text = item.serialNumber;
+    
+    cell.valueLabel.textColor = (item.valueInDollars > 50) ? [UIColor greenColor] : [UIColor redColor];
+    
     cell.valueLabel.text = [NSString stringWithFormat:@"$%d", item.valueInDollars];
     cell.thumbnailView.image = item.thumbnail;
     
